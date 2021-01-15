@@ -1,5 +1,8 @@
 <?php
 // Database connection : $pdo
+
+session_start();
+
 include_once '../pdo_connection.php';
 
 include '../layout/header.php';

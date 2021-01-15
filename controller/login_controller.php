@@ -3,9 +3,10 @@
 include '../view/login_view.php';
 include '../model/user.php';
 
-
-
-
+$_SESSION['date'] = date('d/m/Y');
+$_SESSION['time'] = date('H:i');
+$_SESSION['email'] = getEmailPassword($pdo, $_POST['email'])['email'];
+$dateTime = '['.$_SESSION['date'].'|'.$_SESSION['time'].']';
 
 $_SESSION['connected'] = false;
 
@@ -20,19 +21,22 @@ if (isset($_POST['email'])) {
     var_dump($firstname);
     if (password_verify($_POST['password'], $passwordHash) && $_POST['email'] === $verifiedEmail) {
 
-        // $my_logs = fopen('./logs/' . $_SESSION['date'] . 'logs.txt', 'a+');
-        // fputs($my_logs, $_SESSION['email'] . ' session connectée' . $_SERVER['REQUEST_URI'] . $dateTime . "\n");
 
         $_SESSION['connected'] = true;
-        echo "<p>Session connecté!<p>";
-        echo "<p>Bonjour " . $firstname;
+        echo "<p>Session connecté</p>";
+        echo "<p>Bonjour " . $firstname . '</p>';
         // header("Location: /profil");
+
+        $my_logs = fopen('../logs/' . $_SESSION['date'] . 'logs.txt', 'a+');
+        fputs($my_logs, $_SESSION['email'] . ' session connectée' . $_SERVER['REQUEST_URI'] . $dateTime . "\n");
+
     } else {
         $_SESSION['connected'] = false;
         echo "mot de passe invalide" . '<br>';
-        $my_logs = fopen('./logs/' . $_SESSION['date'] . 'logs.txt', 'a+');
+        $my_logs = fopen('../logs/' . $_SESSION['date'] . 'logs.txt', 'a+');
         fputs($my_logs, $_POST['email'] . ' a tenté de se connecter ' . $_SERVER['REQUEST_URI'] . $dateTime . "\n");
     }
+    
 }
 
 // if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
