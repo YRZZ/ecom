@@ -11,15 +11,23 @@ $_SESSION['connected'] = false;
 if (isset($_POST['email'])) {
     $_SESSION['date'] = date('d/m/Y');
     $_SESSION['time'] = date('H:i');
-    $_SESSION['email'] = getEmailPassword($pdo, $_POST['email'])['email'];
     $dateTime = '['.$_SESSION['date'].'|'.$_SESSION['time'].']';
-    
-    $verifiedEmail = getEmailPassword($pdo, $_POST['email'])['email'];
-    var_dump($verifiedEmail);
-    $passwordHash = getEmailPassword($pdo, $_POST['email'])['password'];
-    var_dump($passwordHash);
-    $firstname = getEmailPassword($pdo, $_POST['email'])['first_name'];
-    var_dump($firstname);
+    // $_SESSION['email'] = getEmailPassword($pdo, $_POST['email'])['email'];
+
+    // $verifiedEmail = getEmailPassword($pdo, $_POST['email'])['email'];
+    // var_dump($verifiedEmail);
+    // $passwordHash = getEmailPassword($pdo, $_POST['email'])['password'];
+    // var_dump($passwordHash);
+    // $firstname = getEmailPassword($pdo, $_POST['email'])['first_name'];
+    // var_dump($firstname);
+
+$dataSession= getEmailPassword($pdo, $_POST['email']);
+var_dump ($dataSession);
+$_SESSION['email'] = $dataSession['email'];
+$verifiedEmail = $dataSession['email'];
+$passwordHash = $dataSession['password'];
+$firstname = $dataSession['first_name'];
+
     if (password_verify($_POST['password'], $passwordHash) && $_POST['email'] === $verifiedEmail) {
 
 
