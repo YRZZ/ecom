@@ -1,15 +1,35 @@
-<h1>Formulaire d'inscrption</h1>
+<main>
 
-<form action="/signin" method="post" >
+<form action="register" method="post">
+    
+    <div>
+        <label for="firstname">Prémon</label>
+        <br>
+        <input type="text" name="firstname" placeholder=" écrivez ici" >
+    </div>
+    <div>
+        <label for="lastname">Nom</label>
+        <br>
+        <input type="text" name="lastname" placeholder=" écrivez ici" >
+    </div>
+    <div>
+        <label for="email">email</label>
+        <br>
+        <input type="text" name="email" placeholder= "Votre email">
+    </div>
+        <div>
+            <label for="phone">Téléphone</label>
+            <br>
+        <input type="number" name="phone" placeholder= "0123456789">
+    </div>
+    <div>
+        <label for="password"> Mot-de-passe </label>
+        <br>
+        <input type="password" name="password" >
+    </div>
+        <input type="submit" value="Valider">
 
-    <label for="firstname">First Name:</label>
-    <input id="firstname" name="firstname" type="text">
+</form>    
+</main>
 
-    <label for="lastname">Last Name:</label>
-    <input id="lastname" name="lastname" type="text">
 
-    <label for="email">Email:</label>
-    <input id="email" name="email" type="text">
-
-    <button type="submit">Submit</button>
-</form>

@@ -2,26 +2,16 @@
 
 function addUser($pdo, $data)
 {
-    $firstname = $data['firstname'];
-    $lastname = $data['lastname'];
-    $email = $data['email'];
-
-
     $sql = "
-        INSERT INTO user (first_name, last_name, email)
-        VALUES (:firstname, :lastname, :email);
+        INSERT INTO client (first_name, last_name, email, password, phone)
+        VALUES (:firstname, :lastname, :email, :password, :phone);
     ";
 
     $stmt = $pdo->prepare($sql);
 
     try {
-        $stmt->execute(
-            [
-                "firstname" => $firstname,
-                "lastname" => $lastname,
-                "email" => $email
-            ]
-        );
+        return $stmt->execute($data); 
+        
     } catch (Exception $e) {
         $pdo->rollBack();
         throw $e;
@@ -120,6 +110,36 @@ function getEmailPassword($pdo, $email) {
         $pdo->rollBack();
         throw $e;
     }
+}
+
+function getUserEmail ($pdo, $mail) {
+    $sql = "
+        SELECT *
+        FROM user
+        WHERE email = '$mail';
+    "; // on définit la requête sql
+// var_dump ($mail);
+    $stmt = $pdo->prepare($sql); // on la prépare
+
+    // $stmt->execute(); // true or false
+
+    // while ($data = $stmt->fetch()) {
+    //     var_dump($data);
+    // }
+    // récupère toutes les données avec fetchall
+    // avec fetch on retourne un seul élément, puis l'élément suivant si on répète (et on n'obtient pas "des tableaux dans un tableau")
+    $stmt->execute();
+
+    try {
+        
+            return $stmt->fetch();
+        
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+
+
 }
 
 function deleteUser ($pdo, $id) {
