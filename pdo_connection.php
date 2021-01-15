@@ -1,6 +1,6 @@
 <?php
 
-$dsn = 'mysql:dbname=business;host=127.0.0.1:8889';
+$dsn = 'mysql:dbname=ecom;host=127.0.0.1:8889';
 $user = 'root';
 $password = 'root';
 
