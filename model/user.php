@@ -2,11 +2,6 @@
 
 function addUser($pdo, $data)
 {
-    $firstname = $data['firstname'];
-    $lastname = $data['lastname'];
-    $email = $data['email'];
-
-
     $sql = "
         INSERT INTO user (first_name, last_name, email)
         VALUES (:firstname, :lastname, :email);
@@ -15,13 +10,7 @@ function addUser($pdo, $data)
     $stmt = $pdo->prepare($sql);
 
     try {
-        $stmt->execute(
-            [
-                "firstname" => $firstname,
-                "lastname" => $lastname,
-                "email" => $email
-            ]
-        );
+        $stmt->execute($data);
     } catch (Exception $e) {
         $pdo->rollBack();
         throw $e;
