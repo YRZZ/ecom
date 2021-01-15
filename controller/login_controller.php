@@ -3,16 +3,17 @@
 include '../view/login_view.php';
 include '../model/user.php';
 
-$_SESSION['date'] = date('d/m/Y');
-$_SESSION['time'] = date('H:i');
-$_SESSION['email'] = getEmailPassword($pdo, $_POST['email'])['email'];
-$dateTime = '['.$_SESSION['date'].'|'.$_SESSION['time'].']';
 
 $_SESSION['connected'] = false;
 
 // $passwordHash = '$2y$10$USjE0V9IPIB5chbQr7XJLe0X5jdX2c8W5zOyV2h3rP8t3Xt2PbSie';
 
 if (isset($_POST['email'])) {
+    $_SESSION['date'] = date('d/m/Y');
+    $_SESSION['time'] = date('H:i');
+    $_SESSION['email'] = getEmailPassword($pdo, $_POST['email'])['email'];
+    $dateTime = '['.$_SESSION['date'].'|'.$_SESSION['time'].']';
+    
     $verifiedEmail = getEmailPassword($pdo, $_POST['email'])['email'];
     var_dump($verifiedEmail);
     $passwordHash = getEmailPassword($pdo, $_POST['email'])['password'];
