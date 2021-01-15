@@ -62,7 +62,7 @@ function getUser ($pdo, $id) {
         SELECT *
         FROM user
         WHERE id = $id;
-    "; // on définit la requête sql
+    "; 
 
     $stmt = $pdo->prepare($sql); // on la prépare
 
@@ -71,8 +71,6 @@ function getUser ($pdo, $id) {
     while ($data = $stmt->fetch()) {
         var_dump($data);
     }
-    // récupère toutes les données avec fetchall
-    // avec fetch on retourne un seul élément, puis l'élément suivant si on répète (et on n'obtient pas "des tableaux dans un tableau")
 
     try {
         $stmt->execute();
@@ -81,8 +79,47 @@ function getUser ($pdo, $id) {
         $pdo->rollBack();
         throw $e;
     }
+}
 
+function getUserEmail($pdo, $email)
+{
+    $sql = "
+        SELECT *
+        FROM user
+        WHERE email = $email;
+    ";
+    // var_dump($email);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
 
+    try {
+        return $stmt->fetch();
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
+
+function getEmailPassword($pdo, $email) {
+    $sql = "
+        SELECT email, password, first_name
+        FROM client
+        WHERE email = :email;
+    ";
+
+    $stmt = $pdo->prepare($sql);
+
+    try {
+        $stmt->execute(
+            [
+                "email" => $email,
+            ]
+        );
+        return $stmt->fetch();
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
 }
 
 function deleteUser ($pdo, $id) {

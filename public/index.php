@@ -14,8 +14,8 @@ switch ($slug) {
         // php file (controller)
         include '../controller/home_controller.php';
         break;
-    case '/signin':
-        include '../controller/signin_controller.php';
+    case '/register':
+        include '../controller/register_controller.php';
         break;
     case '/login':
         include '../controller/login_controller.php';
