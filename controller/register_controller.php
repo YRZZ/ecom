@@ -26,7 +26,7 @@ $_POST['password'] = $passwordHash;
     echo 'Renseignez les champs obligatoires ';
 }
 var_dump($_POST);
-var_dump(getUserEmail ($pdo, 'forehead1@diigo.com'));
+
 
 
 
