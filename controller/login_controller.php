@@ -51,7 +51,7 @@ $firstname = $dataSession['first_name'];
     }
     
 }
-
+var_dump($_SESSION);
 // if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 //     header("Location: /profil");
 // }

@@ -1,7 +1,6 @@
 <?php
 
-function addUser($pdo, $data)
-{
+function addUser($pdo, $data){
     $sql = "
         INSERT INTO client (first_name, last_name, email, password, phone)
         VALUES (:firstname, :lastname, :email, :password, :phone);
@@ -105,8 +104,7 @@ function getEmailPassword($pdo, $email) {
     }
 }
 
-function getClient($pdo, $email)
-{
+function getClient($pdo, $email){
     $sql = "
         SELECT id, email, password, first_name, last_name
         FROM client
@@ -198,20 +196,24 @@ function orderByIdClient($pdo, $id){
         throw $e;
     }
 }
-function getContentOrder($pdo, $id){
+function getContentOrder($pdo, $data){
     $sql = "
-        SELECT *
-        FROM content_order
-        WHERE id_order = :id;
+        SELECT i.name, co.quantity, i.price
+        FROM `order` AS o	 
+        inner join content_order AS co
+        ON o.id = co.id_order
+        INNER join item as i
+        ON co.id_item = i.id
+        WHERE o.id_client=:id AND o.paid=0
     "; 
     $stmt = $pdo->prepare($sql); 
     try {
         $stmt->execute(
             [
-                'id'=>$id,
+                'id'=>$data,
             ]
         ); 
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     
     } catch (Exception $e) {
         $pdo->rollBack();

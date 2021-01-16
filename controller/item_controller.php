@@ -9,11 +9,11 @@ if (isset($_GET['id'])){
 if(empty($_POST)===false){
     if (isset($_SESSION['id'])){
         
-            if ((orderByIdClient($pdo, $_SESSION['id'])) !== false){
-            $post = $_POST;
-            $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
-            
-            $scanOrder=scanOrderContent($pdo, $dataOrder, $post);
+        if ((orderByIdClient($pdo, $_SESSION['id'])) !== false){
+        $post = $_POST;
+        $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
+        
+        $scanOrder=scanOrderContent($pdo, $dataOrder, $post);
             
             if ($scanOrder !==false){
                 if (($scanOrder['id_order'] === $dataOrder['id'] && $scanOrder['id_item']=== $_POST['id_item'])===true){
@@ -31,7 +31,7 @@ if(empty($_POST)===false){
             $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
             addToCart($pdo, $_POST, $dataOrder);
         }
-}else{ 
+    }else{ 
         echo 'Login to add curent item to cart ';
     }
 }
