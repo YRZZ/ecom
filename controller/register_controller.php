@@ -1,15 +1,7 @@
 <?php
 
 include '../model/user.php';
-// $post= $_POST;
 
-// if (isset($_POST['password'])){
-// $passwordHash = password_hash(trim($_POST['password']),PASSWORD_DEFAULT);
-// $_POST['password'] = $passwordHash;
-// }
-
-// $connected=false;
-// $passwordHash = '$2y$10$USjE0V9IPIB5chbQr7XJLe0X5jdX2c8W5zOyV2h3rP8t3Xt2PbSie' ;
 if (empty($_POST['email']) === false && empty($_POST['password']) === false && empty($_POST['lastname']) === false){
     if(isset($_POST['email'])){
         $_POST['firstname']= trim($_POST['firstname']);
