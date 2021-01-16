@@ -19,7 +19,7 @@ function addUser($pdo, $data)
 }
 
 
-function getAllUsers($pdo){
+function getAllUsers($pdo) {
     $sql = "
         SELECT *
         FROM user;
@@ -42,7 +42,6 @@ function getAllUsers($pdo){
         $pdo->rollBack();
         throw $e;
     }
-
 }
 
 
@@ -156,50 +155,11 @@ function updateUser ($pdo, $data, $id) {
         $pdo->rollBack();
         throw $e;
     }
-    function getUser ($pdo, $id) {
-    $sql = "
-        SELECT *
-        FROM user
-        WHERE id = $id;
-    "; // on définit la requête sql
-
-    $stmt = $pdo->prepare($sql); // on la prépare
-
-    $stmt->execute(); // true or false
-
-    while ($data = $stmt->fetch()) {
-        var_dump($data);
-    }
-    // récupère toutes les données avec fetchall
-    // avec fetch on retourne un seul élément, puis l'élément suivant si on répète (et on n'obtient pas "des tableaux dans un tableau")
-
-    try {
-        $stmt->execute();
-        return $stmt->fetch();
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
 
 
 }
 
-function deleteUser ($pdo, $id) {
-    $sql = "
-        DELETE FROM user
-        WHERE id = :id;
-    ";
 
-    $stmt = $pdo->prepare($sql);
-
-    try {
-        $stmt->execute(["id" => $id]);
-        return $stmt->fetch();
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
 function getItemByCategory ($pdo, $id) {
     $sql = "
         SELECT *
@@ -221,7 +181,7 @@ function getItemByCategory ($pdo, $id) {
 
 
 }
-}
+
 
 function getAllItem($pdo) {
     $sql = "
