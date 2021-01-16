@@ -82,6 +82,29 @@ function getEmailPassword($pdo, $email) {
     }
 }
 
+function getClient($pdo, $email)
+{
+    $sql = "
+        SELECT id, email, password, first_name, last_name
+        FROM client
+        WHERE email = :email;
+    ";
+
+    $stmt = $pdo->prepare($sql);
+
+    try {
+        $stmt->execute(
+            [
+                "email" => $email,
+            ]
+        );
+        return $stmt->fetch();
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
+
 
 
 
@@ -118,29 +141,7 @@ function getEmailPassword($pdo, $email) {
 
 
 
-// function getUser ($pdo, $id) {
-//     $sql = "
-//         SELECT *
-//         FROM user
-//         WHERE id = $id;
-//     "; 
 
-//     $stmt = $pdo->prepare($sql); // on la prépare
-
-//     $stmt->execute(); // true or false
-
-//     while ($data = $stmt->fetch()) {
-//         var_dump($data);
-//     }
-
-//     try {
-//         $stmt->execute();
-//         return $stmt->fetch();
-//     } catch (Exception $e) {
-//         $pdo->rollBack();
-//         throw $e;
-//     }
-// }
 
 // function getUserEmail($pdo, $email)
 // {
