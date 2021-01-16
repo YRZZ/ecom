@@ -22,17 +22,20 @@ function addUser($pdo, $data)
 function getItemByCategory ($pdo, $id) {
     $sql = "
         SELECT *
-        FROM category
-        WHERE id = :id;
+        FROM item
+        WHERE id_category = :id;
     "; 
 
     $stmt = $pdo->prepare($sql); 
 
-    $stmt->execute($id); 
+    $stmt->execute(
+        [
+            'id'=>$id,
+        ]
+    ); 
 
     try {
-       
-        return $stmt->fetch();
+       return $stmt->fetchAll();
     } catch (Exception $e) {
         $pdo->rollBack();
         throw $e;
