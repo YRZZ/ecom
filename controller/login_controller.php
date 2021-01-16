@@ -36,6 +36,7 @@ $firstname = $dataSession['first_name'];
         $_SESSION['id'] = $clientInfos['id'];
         $_SESSION['first_name'] = $clientInfos['first_name'];
         $_SESSION['last_name'] = $clientInfos['last_name'];
+        $_SESSION['last_name'] = $clientInfos['phone'];
         echo "<p>Session connecté</p>";
         echo "<p>Bonjour " . $firstname . '</p>';
         // header("Location: /profil");

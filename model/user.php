@@ -62,7 +62,7 @@ function getAllItem($pdo) {
 // ######################## user ##########################
 function getEmailPassword($pdo, $email) {
     $sql = "
-        SELECT email, password, first_name
+        SELECT email, password, first_name, phone
         FROM client
         WHERE email = :email;
     ";
