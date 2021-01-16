@@ -86,7 +86,7 @@ function getEmailPassword($pdo, $email) {
 function getClient($pdo, $email)
 {
     $sql = "
-        SELECT id, email, password, first_name, last_name
+        SELECT id, email, password, first_name, last_name, phone
         FROM client
         WHERE email = :email;
     ";
@@ -107,10 +107,39 @@ function getClient($pdo, $email)
 }
 
 
+function updateClient ($pdo, $email) {
+    $sql = "
+        UPDATE client
+        SET first_name = :firstname, last_name = :lastname, email = :email, phone = :phone
+        WHERE email = :email;
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    
+    try {
+        return $stmt->execute(["email" => $email]);            
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
 
 
+function deleteClient ($pdo, $id) {
+    $sql = "
+        DELETE FROM client
+        WHERE id = :id;
+    ";
 
+    $stmt = $pdo->prepare($sql);
 
+    try {
+        return $stmt->execute(["id" => $id]);
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
 
 
 
@@ -191,11 +220,6 @@ function getClient($pdo, $email)
 
 
 
-// function deleteUser ($pdo, $id) {
-//     $sql = "
-//         DELETE FROM user
-//         WHERE id = :id;
-//     ";
 
 //     $stmt = $pdo->prepare($sql);
 
@@ -208,33 +232,5 @@ function getClient($pdo, $email)
 //     }
 // }
 
-// function updateUser ($pdo, $data, $id) {
-//     $sql = "
-//         UPDATE user
-//         SET first_name = :firstname, last_name = :lastname, email = :email
-//         WHERE id = :id;
-//     ";
-
-//     // foreach ($data as $key => $value) {
-//     //     if ($key === 'firstname') {
-//     //         $sql.= 'fistname = '
-//     //     }
-//     // }
-
-//     $stmt = $pdo->prepare($sql);
-    
-
-//     try {
-//         return $stmt->execute([
-//             "id" => $id]);
-
-            
-//     } catch (Exception $e) {
-//         $pdo->rollBack();
-//         throw $e;
-//     }
-
-
-// }
 
 

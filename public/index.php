@@ -32,6 +32,12 @@ switch ($slug) {
     case '/cart':
         include '../controller/cart_controller.php';
         break;
+    case '/account_edit':
+        include '../controller/account_edit_controller.php';
+        break;
+    case '/account_delete':
+        include '../controller/account_delete_controller.php';
+        break;
     default:
         include "../controller/404_controller.php";
         break;

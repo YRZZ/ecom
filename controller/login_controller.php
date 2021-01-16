@@ -36,6 +36,8 @@ $firstname = $dataSession['first_name'];
         $_SESSION['id'] = $clientInfos['id'];
         $_SESSION['first_name'] = $clientInfos['first_name'];
         $_SESSION['last_name'] = $clientInfos['last_name'];
+        $_SESSION['phone'] = $clientInfos['phone'];
+        
         echo "<p>Session connecté</p>";
         echo "<p>Bonjour " . $firstname . '</p>';
         // header("Location: /profil");
@@ -51,6 +53,8 @@ $firstname = $dataSession['first_name'];
     }
     
 }
+
+
 
 // if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 //     header("Location: /profil");
