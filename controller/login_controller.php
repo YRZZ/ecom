@@ -32,6 +32,10 @@ $firstname = $dataSession['first_name'];
 
 
         $_SESSION['connected'] = true;
+        $clientInfos = getClient($pdo, $_SESSION['email']);
+        $_SESSION['id'] = $clientInfos['id'];
+        $_SESSION['first_name'] = $clientInfos['first_name'];
+        $_SESSION['last_name'] = $clientInfos['last_name'];
         echo "<p>Session connecté</p>";
         echo "<p>Bonjour " . $firstname . '</p>';
         // header("Location: /profil");
