@@ -186,8 +186,7 @@ function getItemByCategory ($pdo, $id) {
 function getAllItem($pdo) {
     $sql = "
         SELECT *
-        FROM item;
-        
+        FROM item;        
     "; // on définit la requête sql
 
     $stmt = $pdo->prepare($sql); // on la prépare
