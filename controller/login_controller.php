@@ -1,10 +1,6 @@
 <?php
-
-include '../view/login_view.php';
 include '../model/user.php';
-
-
-$_SESSION['connected'] = false;
+// $_SESSION['connected'] = false;
 
 // $passwordHash = '$2y$10$USjE0V9IPIB5chbQr7XJLe0X5jdX2c8W5zOyV2h3rP8t3Xt2PbSie';
 
@@ -42,9 +38,10 @@ $firstname = $dataSession['first_name'];
         echo "<p>Bonjour " . $firstname . '</p>';
         // header("Location: /profil");
 
-        $my_logs = fopen('../logs/' . $_SESSION['date'] . 'logs.txt', 'a+');
-        fputs($my_logs, $_SESSION['email'] . ' session connectée' . $_SERVER['REQUEST_URI'] . $dateTime . "\n");
-
+        // $my_logs = fopen('../logs/' . $_SESSION['date'] . 'logs.txt', 'a+');
+        // fputs($my_logs, $_SESSION['email'] . ' session connectée' . $_SERVER['REQUEST_URI'] . $dateTime . "\n");
+        header('Location: item');
+        exit();
     } else {
         $_SESSION['connected'] = false;
         echo "mot de passe invalide" . '<br>';
@@ -53,8 +50,11 @@ $firstname = $dataSession['first_name'];
     }
     
 }
+if (isset($_SESSION['connected'])&& $_SESSION['connected']=== true){
+    header("Location: account");
+}
 
-// var_dump($_SESSION);
+var_dump($_SESSION);
 
 // if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 //     header("Location: /profil");
@@ -62,3 +62,5 @@ $firstname = $dataSession['first_name'];
 
 // var_dump(getEmailPassword($pdo,'forehead1@diigo.com'));
 // getUser($pdo, 2);
+include '../view/login_view.php';
+include '../controller/register_controller.php';

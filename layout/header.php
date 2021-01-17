@@ -1,9 +1,15 @@
 <?php
 include '../model/order.php';
+$cartSum['SUM(quantity)']=''; 
+
+if (isset($_SESSION['id'])){
 $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
 
-$cartSum=countItem($pdo, $dataOrder['id']);
-$cartSum['SUM(quantity)'];
+    if ($dataOrder!==false){
+        $cartSum=countItem($pdo, $dataOrder['id']);
+        $cartSum['SUM(quantity)'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,12 +28,20 @@ $cartSum['SUM(quantity)'];
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/item">Product</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/account">Account</a></li>
-                <li><a href="/cart">Cart</a> <span><?= $cartSum['SUM(quantity)']; ?></span>
-                <!-- <?=$cartSum?> -->
-            </li>
+                <li><a href="/login">Login / Sign in</a></li>
+                
+                
+                
+            
             </ul>
+            <?php if (isset($_SESSION['id'])) :?>
+        </nav>
+            <ul>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/cart">Cart</a> <span><?= $cartSum['SUM(quantity)']; ?></li></span>
+            </ul>
+        <nav>
+            <?php endif ?>
+            
         </nav>
     </header>

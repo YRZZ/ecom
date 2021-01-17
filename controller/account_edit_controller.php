@@ -11,7 +11,7 @@ if (isset($_POST['password'])) {
         $passwordHash = password_hash(trim($_POST['password']), PASSWORD_BCRYPT);
         $_SESSION['password'] = $passwordHash;
         echo 'fromage';
-        var_dump(updateClient($pdo, $_SESSION));
+        updateClient($pdo, $_SESSION);
         header('Location: account');
         exit();
     }

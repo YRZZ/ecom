@@ -1,12 +1,18 @@
 <?php
 include '../model/item.php';
 $dataItem=getAllItem($pdo); 
-$dataOrder = orderByIdClient($pdo, $_SESSION['id']);
 
-$cartSum=countItem($pdo, $dataOrder['id']);
+if (isset($_SESSION['id'])){
+    $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
+    if ($dataOrder!==false){
+        $cartSum=countItem($pdo,    $dataOrder['id']);
+    }
+}
+
 if (isset($_GET['id'])){
     $dataItem = getItemByCategory ($pdo, $_GET['id']);
 }
+
 if(empty($_POST)===false){
     if (isset($_SESSION['id'])){
         
@@ -33,8 +39,11 @@ if(empty($_POST)===false){
             addToCart($pdo, $_POST, $dataOrder);
         }
     }else{ 
-        echo 'Login to add curent item to cart ';
+       header('Location: login');
+       exit();
     }
+    header('Location: item');
+    exit();
 }
 // var_dump($dataOrder);
 

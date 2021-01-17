@@ -1,6 +1,8 @@
 <?php
 include '../model/item.php';
+
 $cart = (getContentOrder($pdo, $_SESSION['id']));
+
 $cartEmpty='';
 
 if($_SESSION['connected']===true){
@@ -9,18 +11,20 @@ if($_SESSION['connected']===true){
 
     if(orderByIdClient($pdo, $_SESSION['id']) === false){
         $cartEmpty='<h1>Votre panier est vide</h1>';
+    }elseif(empty($cart)!==false){
+        $cartEmpty='<h1>Votre panier est vide</h1>';
     }else{
-        $cartEmpty='<h1>Votre panier contient </h1>';
+        $cartEmpty='<h1>Votre panier contient</h1>';
         $cart = (getContentOrder($pdo, $_SESSION['id']));
     }
 }
 $i=1;
 $total= 0;
-var_dump($_SESSION);
+// var_dump($_SESSION);
 // var_dump($_POST);
 // var_dump($dataOrder );
 // var_dump($itemId);
-// var_dump($cart);
+var_dump($cart);
 
 if(empty($_POST)=== false){
     foreach($cart as $value){

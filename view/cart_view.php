@@ -1,7 +1,5 @@
 
-<main>
-
-<h2>Cart</h2> <?= $i?>
+<main> 
 
 <?= $cartEmpty ?>
 <div>

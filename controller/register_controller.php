@@ -1,6 +1,6 @@
 <?php
 
-include '../model/user.php';
+
 
 if (empty($_POST['email']) === false && empty($_POST['password']) === false && empty($_POST['lastname']) === false){
     if(isset($_POST['email'])){
