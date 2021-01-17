@@ -1,7 +1,6 @@
 <?php
 
-function addUser($pdo, $data)
-{
+function addUser($pdo, $data){
     $sql = "
         INSERT INTO client (first_name, last_name, email, password, phone)
         VALUES (:firstname, :lastname, :email, :password, :phone);
@@ -19,68 +18,7 @@ function addUser($pdo, $data)
 }
 
 // ######################## item ##########################
-function getItemByCategory ($pdo, $id) {
-    $sql = "
-        SELECT *
-        FROM item
-        WHERE id_category = :id;
-    "; 
 
-    $stmt = $pdo->prepare($sql); 
-
-    $stmt->execute(
-        [
-            'id'=>$id,
-        ]
-    ); 
-
-    try {
-       return $stmt->fetchAll();
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
-
-function getAllItem($pdo) {
-    $sql = "
-        SELECT *
-        FROM item;
-        
-    "; // on définit la requête sql
-
-    $stmt = $pdo->prepare($sql); // on la prépare
-    $stmt->execute(); // true or false
-    return $stmt->fetchAll();
-    try {
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
-
-function getItemById ($pdo, $id) {
-    $sql = "
-        SELECT *
-        FROM item
-        WHERE id = :id;
-    "; 
-
-    $stmt = $pdo->prepare($sql); 
-
-    $stmt->execute(
-        [
-            'id'=>$id,
-        ]
-    ); 
-
-    try {
-       return $stmt->fetchAll();
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
 
 // ######################## user ##########################
 function getEmailPassword($pdo, $email) {
@@ -105,8 +43,7 @@ function getEmailPassword($pdo, $email) {
     }
 }
 
-function getClient($pdo, $email)
-{
+function getClient($pdo, $email){
     $sql = "
         SELECT id, email, password, first_name, last_name, phone
         FROM client
@@ -129,184 +66,6 @@ function getClient($pdo, $email)
 }
 
 // ######################## order ##########################
-function openOrder($pdo, $data){
-    $sql = "
-        INSERT INTO `order` (id_client, paid)
-        VALUES (:id_client, :paid);
-    ";
-
-    $stmt = $pdo->prepare($sql);
-
-    try {
-        return $stmt->execute(
-            [
-                'id_client'=> $_SESSION['id'],
-                'paid'=>0
-            ]
-        ); 
-        
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
-
-function addToCart($pdo, $post, $dataOrder){
-    $sql = "
-        INSERT INTO content_order (id_order, id_item, quantity)
-        VALUES (:id_order, :id_item, :quantity);
-    ";
-
-    $stmt = $pdo->prepare($sql);
-
-    try {
-        return $stmt->execute(
-            [
-                'id_order'=>$dataOrder['id'],
-                'id_item'=> $post['id_item'],
-                'quantity'=>$post['quantity']
-            ]
-        ); 
-        
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
-
-function orderByIdClient($pdo, $id){
-    $sql = "
-        SELECT *
-        FROM `order`
-        WHERE id_client = :id;
-    "; 
-    $stmt = $pdo->prepare($sql); 
-    try {
-        $stmt->execute(
-            [
-                'id'=>$id,
-            ]
-        ); 
-        return $stmt->fetch();
-    
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
-
-function getContentOrder($pdo, $id){
-    $sql = "
-        SELECT *
-        FROM content_order
-        WHERE id_order = :id;
-    "; 
-    $stmt = $pdo->prepare($sql); 
-    try {
-        $stmt->execute(
-            [
-                'id'=>$id,
-            ]
-        ); 
-        return $stmt->fetch();
-    
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-
-}
-
-function scanOrderContent($pdo, $dataOrder, $post){
-    $sql = "
-        SELECT *
-        FROM content_order
-        WHERE id_order = :id_order AND id_item = :id_item  ;
-    "; 
-    $stmt = $pdo->prepare($sql); 
-    try {
-        $stmt->execute(
-            [
-                'id_order'=>$dataOrder['id'],
-                'id_item'=> $post['id_item']
-            ]
-        ); 
-        return $stmt->fetch();
-    
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
-function modifyItemQuantity($pdo, $updatedQuantity,$dataOrder, $post ){
-    $sql ="
-        UPDATE content_order
-        SET quantity = :qts
-        WHERE id_order = :id_order AND id_item = :id_item  ;
-    "; 
-    $stmt = $pdo->prepare($sql); 
-    try {
-        $stmt->execute(
-            [
-                'qts'=> $updatedQuantity,
-                'id_order'=>$dataOrder['id'],
-                'id_item'=> $post['id_item']
-            ]
-        );  
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-};
-
-
-
-function updateClient($pdo, $fromage)
-{
-    var_dump($fromage);
-    $first_name = $fromage['first_name'];
-    $last_name = $fromage['last_name'];
-    $email = $fromage['email'];
-    $phone = $fromage['phone'];
-    $sql = "
-        UPDATE client
-        SET first_name = :first_name , last_name = :last_name , email = :email , phone = :phone
-        WHERE email = :email;
-    ";
-
-    $stmt = $pdo->prepare($sql);
-
-    try {
-        return $stmt->execute(
-            [
-                "first_name" => $first_name,
-                "last_name" => $last_name,
-                "email" => $email,
-                "phone" => $phone
-            ]
-        );
-
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
-
-function deleteClient ($pdo, $id) {
-    $sql = "
-        DELETE FROM client
-        WHERE id = :id;
-    ";
-
-    $stmt = $pdo->prepare($sql);
-
-    try {
-        return $stmt->execute(["id" => $id]);
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        throw $e;
-    }
-}
 
 
 

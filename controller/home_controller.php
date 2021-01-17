@@ -1,6 +1,6 @@
 <?php
 
-include '../model/user.php';
+include '../model/item.php';
 
 $dataItem=getAllItem($pdo); 
 

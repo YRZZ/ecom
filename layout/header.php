@@ -1,4 +1,10 @@
+<?php
+include '../model/order.php';
+$dataOrder = orderByIdClient($pdo, $_SESSION['id']);
 
+$cartSum=countItem($pdo, $dataOrder['id']);
+$cartSum['SUM(quantity)'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +25,9 @@
                 <li><a href="/login">Login</a></li>
                 <li><a href="/register">Register</a></li>
                 <li><a href="/account">Account</a></li>
-                <li><a href="/cart">Cart</a></li>
+                <li><a href="/cart">Cart</a> <span><?= $cartSum['SUM(quantity)']; ?></span>
+                <!-- <?=$cartSum?> -->
+            </li>
             </ul>
         </nav>
     </header>
