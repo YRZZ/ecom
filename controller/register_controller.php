@@ -14,10 +14,8 @@ $_POST['password'] = $passwordHash;
 
         var_dump(addUser($pdo, $_POST));
     }
-}else{
-    echo 'Renseignez les champs obligatoires ';
 }
-var_dump($_POST);
+// var_dump($_POST);
 
 
 
