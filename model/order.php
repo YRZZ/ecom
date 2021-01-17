@@ -19,9 +19,6 @@ function openOrder($pdo, $data){
         $pdo->rollBack();
         throw $e;
     }
-
-
-
 }
 function addToCart($pdo, $post, $dataOrder){
     $sql = "
@@ -91,7 +88,6 @@ function getContentOrder($pdo, $data){
         $pdo->rollBack();
         throw $e;
     }
-
 }
 function scanOrderContent($pdo, $dataOrder, $post){
     $sql = "
@@ -121,14 +117,18 @@ function modifyItemQuantity($pdo, $updatedQuantity,$dataOrder, $post ){
         WHERE id_order = :id_order AND id_item = :id_item  ;
     "; 
     $stmt = $pdo->prepare($sql); 
-    
-    $stmt->execute(
-        [
-            'qts'=> $updatedQuantity,
-            'id_order'=>$dataOrder,
-            'id_item'=> $post
-        ]
-    );
+        try {
+        $stmt->execute(
+            [
+                'qts'=> $updatedQuantity,
+                'id_order'=>$dataOrder,
+                'id_item'=> $post
+            ]
+        );
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
 }
 function removeItem($pdo, $id){
     $sql="
@@ -136,14 +136,18 @@ function removeItem($pdo, $id){
         WHERE id_item= :id;
     ";
     $stmt = $pdo->prepare($sql); 
-    
-    $stmt->execute(
-        [
-            'id'=> $id,
-        ]
-    ); 
-
+    try {
+        $stmt->execute(
+            [
+                'id'=> $id,
+            ]
+        ); 
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
 }
+
 function countItem($pdo,$id){
     $sql="
     SELECT SUM(quantity)
@@ -152,12 +156,16 @@ function countItem($pdo,$id){
     WHERE id_order= :id;
     ";
     $stmt = $pdo->prepare($sql); 
+    try {
+        $stmt->execute(
+            [
+                'id'=> $id,
+            ]
+        ); 
+        return $stmt->fetch();
 
-    $stmt->execute(
-        [
-            'id'=> $id,
-        ]
-    ); 
-    return $stmt->fetch();
-
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
 }
