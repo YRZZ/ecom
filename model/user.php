@@ -107,17 +107,30 @@ function getClient($pdo, $email)
 }
 
 
-function updateClient ($pdo, $email) {
+function updateClient($pdo, $fromage)
+{
+    var_dump($fromage);
+    $first_name = $fromage['first_name'];
+    $last_name = $fromage['last_name'];
+    $email = $fromage['email'];
+    $phone = $fromage['phone'];
     $sql = "
         UPDATE client
-        SET first_name = :firstname, last_name = :lastname, email = :email, phone = :phone
+        SET first_name = :first_name , last_name = :last_name , email = :email , phone = :phone
         WHERE email = :email;
     ";
 
     $stmt = $pdo->prepare($sql);
-    
+
     try {
-        return $stmt->execute(["email" => $email]);            
+        return $stmt->execute(
+            [
+                "first_name" => $first_name,
+                "last_name" => $last_name,
+                "email" => $email,
+                "phone" => $phone
+            ]
+        );
     } catch (Exception $e) {
         $pdo->rollBack();
         throw $e;

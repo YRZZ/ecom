@@ -1,14 +1,14 @@
 <form action="/account_edit" method="post">
 
     <div>
-        <label for="firstname"> First Name</label>
+        <label for="first_name"> First Name</label>
         <br>
-        <input type="text" name="firstname" value="<?= $_SESSION['first_name'] ?>">
+        <input type="text" name="first_name" value="<?= $_SESSION['first_name'] ?>">
     </div>
     <div>
-        <label for="lastname">Last Name</label>
+        <label for="last_name">Last Name</label>
         <br>
-        <input type="text" name="lastname" value=" <?= $_SESSION['last_name'] ?>">
+        <input type="text" name="last_name" value="<?= $_SESSION['last_name'] ?>">
     </div>
     <div>
         <label for="email">email</label>
@@ -23,13 +23,13 @@
     <div>
         <label for="password"> Password </label>
         <br>
-        <input type="password" name="password">
+        <input type="password" name="password" required>
     </div>
-    <div>
-        <label for="new_password">New password</label>
+    <!-- <div>
+        <label for="password">New password</label>
         <br>
-        <input type="password" name="new_password">
-    </div>
+        <input type="password" name="password">
+    </div> -->
     <p>Enter your password before submit</p>
     <input type="submit" value="Submit">
 
