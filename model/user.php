@@ -67,7 +67,6 @@ function getClient($pdo, $email){
 
 function updateClient($pdo, $fromage)
 {
-    
     $first_name = $fromage['first_name'];
     $last_name = $fromage['last_name'];
     $email = $fromage['email'];
