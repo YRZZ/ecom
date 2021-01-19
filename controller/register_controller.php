@@ -32,7 +32,7 @@ if (empty($_POST['email']) === false && empty($_POST['password']) === false && e
                 header('Location: account');
                 exit();
             }else{
-                echo "Cet email excite déjà " . '<br>';
+                echo "Cet email existe déjà " . '<br>';
             }
         }
 
