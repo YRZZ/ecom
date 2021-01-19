@@ -3,7 +3,7 @@
 
 <?= $cartEmpty ?>
 <div>
-    <form action="/cart" method="post">
+    <form id='cart' action="/cart" method="post">
         <table style="width:70%">
             <thead>
                 <tr>
@@ -34,9 +34,11 @@
                 </tr>
             </tbody>
         </table>
-                    <button type="submit">Update cart</button>
+                    <button form='cart' type="submit">Update cart</button>
     </form>            
 </div>
+<div>
 
-
+</div>
+<a href="/payment"><button type=button>Payment</button></a>
 </main>

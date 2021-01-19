@@ -16,8 +16,3 @@ echo '<p> Phone : ' . $_SESSION['phone'] . '</p>';
     <input type="submit" value="edit account">
 </form>
 </p>
-<p>
-<form action="/account_delete" method="post">
-    <input type="submit" value="delete account">
-</form>
-</p>

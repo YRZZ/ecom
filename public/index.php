@@ -38,6 +38,9 @@ switch ($slug) {
     case '/account_delete':
         include '../controller/account_delete_controller.php';
         break;
+    case '/payment':
+        include '../controller/payment_controller.php';
+        break;
     default:
         include "../controller/404_controller.php";
         break;
