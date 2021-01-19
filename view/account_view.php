@@ -21,3 +21,32 @@
 </form>
 </p>
 
+<p>Passed Order</p>
+<?php foreach($dataOrder as $value) :?>
+    <table style="width:70%">
+        <h3>Order n˚<?= $value['id']?></h3>
+       
+        <thead>
+            <tr>
+            
+            <th>Product name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sub-Total</th>
+        </tr>
+    </thead>
+    <tbody>
+                <?php $order = getHistoricOrder($pdo, $value['id']);?>
+                <?php foreach($order as $item) :?>
+                    
+                    <tr>
+                        <td><?= $item['name_item']?></td>
+                        <td><?=$item['price']?></td>
+                        <td><?=$item['quantity']?></td>
+                        <td><?=$item['quantity']*$item['price']?></td>
+                        <!-- <?php $total += $item['quantity']*$item['price'];?> -->
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php endforeach; ?>

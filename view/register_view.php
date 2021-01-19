@@ -1,6 +1,6 @@
 <main>
 <h2>Sign in</h2>
-<form action="register" method="post">
+<form action="/login" method="post">
     
     <div>
         <label for="firstname">Prémon</label>
@@ -27,7 +27,7 @@
         <br>
         <input type="password" name="password" required>
     </div>
-        <input type="submit" value="Valider">
+        <input type="submit" value="Send">
 
 </form>    
 </main>

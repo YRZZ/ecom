@@ -44,7 +44,7 @@ if (empty($_POST['email']) === false && empty($_POST['password']) === false && e
         $_POST['password'] = $passwordHash;
 
         addUser($pdo, $_POST);
-        
+  
         
     }
 }

@@ -48,7 +48,7 @@ if (isset($_POST['email'])) {
         }
     }else{
         $_SESSION['connected'] = false;
-        echo "Email inconnu" . '<br>';
+        echo "Please login" . '<br>';
     }
 }
 if (isset($_SESSION['connected'])&& $_SESSION['connected']=== true){

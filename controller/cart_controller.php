@@ -9,7 +9,7 @@ if($_SESSION['connected']===true){
     
     // $itemId = getContentOrder($pdo, $_SESSION['id']);
 
-    if(orderByIdClient($pdo, $_SESSION['id']) === false){
+    if(getOpenOrderByIdClient($pdo, $_SESSION['id']) === false){
         $cartEmpty='<h2>Votre panier est vide</h2>';
     }elseif(empty($cart)!==false){
         $cartEmpty='<h2>Votre panier est vide</h2>';

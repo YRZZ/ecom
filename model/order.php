@@ -58,7 +58,7 @@ function orderByIdClient($pdo, $id){
                 'id'=>$id,
             ]
         ); 
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     
     } catch (Exception $e) {
         $pdo->rollBack();
@@ -261,6 +261,27 @@ function deleteOrder($pdo, $idClient){
                 'id' => $idClient,
             ]
         ); 
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+
+}
+function getHistoricOrder($pdo, $idOrder){
+    $sql = "
+        SELECT id_order, name_item, quantity, price, category 
+        FROM ordered_item_snapshot 
+        WHERE id_order= :id;
+    "; 
+    $stmt = $pdo->prepare($sql); 
+    try {
+        $stmt->execute(
+            [
+                'id'=>$idOrder,
+            ]
+        ); 
+        return $stmt->fetchAll();
+
     } catch (Exception $e) {
         $pdo->rollBack();
         throw $e;
