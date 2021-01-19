@@ -6,7 +6,7 @@ $cart = (getContentOrder($pdo, $_SESSION['id']));
 $cartEmpty='';
 
 if($_SESSION['connected']===true){
-    $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
+    
     // $itemId = getContentOrder($pdo, $_SESSION['id']);
 
     if(orderByIdClient($pdo, $_SESSION['id']) === false){
@@ -24,9 +24,10 @@ $total= 0;
 // var_dump($_POST);
 // var_dump($dataOrder );
 // var_dump($itemId);
-var_dump($cart);
+// var_dump($cart);
 
 if(empty($_POST)=== false){
+    $dataOrder = getOpenOrderByIdClient($pdo, $_SESSION['id']);
     foreach($cart as $value){
         // var_dump($value['id_item']);
         foreach($_POST as $key =>$id){

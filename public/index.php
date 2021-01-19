@@ -41,6 +41,10 @@ switch ($slug) {
     case '/logout':
         include '../controller/logout_controller.php';
         break;
+    case '/payment':
+        include '../controller/payment_controller.php';
+
+        break;
     default:
         include "../controller/404_controller.php";
         break;

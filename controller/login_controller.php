@@ -18,7 +18,6 @@ if (isset($_POST['email'])) {
     // var_dump($firstname);
 
     $dataSession= getEmailPassword($pdo, $_POST['email']);
-    var_dump ($dataSession);
         if($dataSession!== false){
         $_SESSION['email'] = $dataSession['email'];
         $verifiedEmail = $dataSession['email'];
@@ -56,13 +55,11 @@ if (isset($_SESSION['connected'])&& $_SESSION['connected']=== true){
     header("Location: account");
 }
 
-var_dump($_SESSION);
 
 // if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
 //     header("Location: /profil");
 // }
 
-// var_dump(getEmailPassword($pdo,'forehead1@diigo.com'));
-// getUser($pdo, 2);
+
 include '../view/login_view.php';
 include '../controller/register_controller.php';

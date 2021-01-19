@@ -36,4 +36,4 @@
 </form>
 
 <?php
-var_dump($_SESSION['first_name']);
+

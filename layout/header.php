@@ -2,8 +2,9 @@
 include '../model/order.php';
 $cartSum['SUM(quantity)'] = '';
 
-if (isset($_SESSION['id'])) {
-    $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
+
+if (isset($_SESSION['id'])){
+$dataOrder = getOpenOrderByIdClient($pdo, $_SESSION['id']);
 
     if ($dataOrder !== false) {
         $cartSum = countItem($pdo, $dataOrder['id']);

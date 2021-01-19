@@ -4,7 +4,6 @@ include_once '../model/user.php';
 
 if (empty($_POST['email']) === false && empty($_POST['password']) === false && empty($_POST['lastname']) === false){
         $dataSession= getEmailPassword($pdo, $_POST['email']);
-        var_dump ($dataSession);
         if($dataSession!== false){
             $_SESSION['email'] = $dataSession['email'];
             $verifiedEmail = $dataSession['email'];
@@ -19,7 +18,6 @@ if (empty($_POST['email']) === false && empty($_POST['password']) === false && e
                 $_SESSION['first_name'] = $clientInfos['first_name'];
                 $_SESSION['last_name'] = $clientInfos['last_name'];
                 $_SESSION['phone'] = $clientInfos['phone'];
-                var_dump($clientInfos);
                 echo "<p>Session connecté</p>";
                 echo "<p>Bonjour " . $firstname . '</p>';
                 // header("Location: /profil");
@@ -47,12 +45,10 @@ if (empty($_POST['email']) === false && empty($_POST['password']) === false && e
 
         addUser($pdo, $_POST);
         
-        // if (password_verify($_POST['password'], $passwordHash) && $_POST['email'] === $verifiedEmail) {
         
     }
 }
-var_dump($_POST);
-var_dump($_SESSION);
+
 
 
 

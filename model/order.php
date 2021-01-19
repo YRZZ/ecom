@@ -65,9 +65,29 @@ function orderByIdClient($pdo, $id){
         throw $e;
     }
 }
+function getOpenOrderByIdClient($pdo, $id){
+    $sql = "
+        SELECT *
+        FROM `order`
+        WHERE id_client = :id AND paid = '0' ;
+    "; 
+    $stmt = $pdo->prepare($sql); 
+    try {
+        $stmt->execute(
+            [
+                'id'=>$id,
+            ]
+        ); 
+        return $stmt->fetch();
+    
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
 function getContentOrder($pdo, $data){
     $sql = "
-        SELECT i.name, co.quantity, i.price, co.id_item
+        SELECT i.name, co.quantity, i.price, i.id_category, co.id_item
         FROM `order` AS o	 
         inner join content_order AS co
         ON o.id = co.id_order
@@ -117,7 +137,7 @@ function modifyItemQuantity($pdo, $updatedQuantity,$dataOrder, $post ){
         WHERE id_order = :id_order AND id_item = :id_item  ;
     "; 
     $stmt = $pdo->prepare($sql); 
-        try {
+    try {
         $stmt->execute(
             [
                 'qts'=> $updatedQuantity,
@@ -168,4 +188,82 @@ function countItem($pdo,$id){
         $pdo->rollBack();
         throw $e;
     }
+}
+function orderPaid($pdo, $id, $index){
+    $sql="
+        UPDATE `order`
+        SET paid = :index
+        WHERE id_client = :id  ;
+    ";
+    $stmt = $pdo->prepare($sql); 
+    try {
+        $stmt->execute(
+            [
+                'index'=> $index,
+                'id'=>$id
+            ]
+        ); 
+        
+
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
+function addTooO_I_Snapshot($pdo, $idOrder, $name, $price, $category, $quantity){
+    $sql="
+        INSERT INTO ordered_item_snapshot (id_order, name_item, price, category, quantity)
+        VALUES ( :id_order, :name_item, :price , :category, :quantity );
+        ";
+    $stmt = $pdo->prepare($sql); 
+    try {
+        $stmt->execute(
+            [
+                'id_order' => $idOrder,
+                'name_item' =>$name,
+                'price' => $price,
+                'category'=> $category,
+                'quantity'=>$quantity
+            ]
+        ); 
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
+function deleteContentOrder($pdo, $idOrder){
+    $sql="
+        DELETE FROM content_order
+        WHERE id_order= :id_order;
+        ";
+    $stmt = $pdo->prepare($sql); 
+    try {
+        $stmt->execute(
+            [
+                'id_order' => $idOrder,
+            ]
+        ); 
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+
+}
+function deleteOrder($pdo, $idClient){
+    $sql="
+        DELETE FROM `order`
+        WHERE id_client = :id;
+        ";
+    $stmt = $pdo->prepare($sql); 
+    try {
+        $stmt->execute(
+            [
+                'id' => $idClient,
+            ]
+        ); 
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+
 }
