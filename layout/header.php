@@ -42,7 +42,6 @@ $dataOrder = getOpenOrderByIdClient($pdo, $_SESSION['id']);
                     <?php endif ?>
                 </div>
             </ul>
-
         </div>
 
     </header>

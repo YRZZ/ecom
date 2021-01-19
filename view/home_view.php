@@ -11,10 +11,10 @@
 
 -->
 <div class="home">
-    <div class="orchid"></div>
-    <div class="green"></div>
-    <div class="pottery"></div>
-    <div class="tools"></div>
-    <div class="sechees"></div>
-    <div class="verte"></div>
+    <a href="/item.php" class="orchid"></a>
+    <a class="green" href="/item.php"></a>
+    <a class="pottery" href="/item.php"></a>
+    <a class="tools" href="/item.php"></a>
+    <a class="sechees"  href="/item.php"></a>
+    <a class="verte" href="/item.php"></a>
 </div>
