@@ -31,15 +31,15 @@ $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
                 <li><a href="/item">Product</a></li>
                 <li><a href="/login">Login / Sign in</a></li>
                 
-                
-                
-            
+                            
+        
             </ul>
             <?php if (isset($_SESSION['id'])) :?>
         </nav>
             <ul>
                 <li><a href="/account">Account</a></li>
                 <li><a href="/cart">Cart</a> <span><?= $cartSum['SUM(quantity)']; ?></li></span>
+                <li><a href="/logout">Logout</a></li>
             </ul>
         <nav>
             <?php endif ?>

@@ -94,6 +94,28 @@ function updateClient($pdo, $fromage)
     }
 }
 
+function deleteClient($pdo, $fromage)
+{
+    $email = $fromage['email'];
+    $sql = "
+        DELETE FROM client
+        WHERE email = :email;
+    ";
+
+    $stmt = $pdo->prepare($sql);
+
+    try {
+        return $stmt->execute(
+            [
+                "email" => $email,
+            ]
+        );
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
+
 
 
 // ######################## order ##########################
