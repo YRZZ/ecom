@@ -24,6 +24,7 @@ $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
 
 <body>
     <header>
+    <h1>TERMINAFLOR</h1>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
