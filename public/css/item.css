@@ -1,0 +1,31 @@
+main {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: white;
+}
+
+.side {
+    margin: 40px;
+    position: fixed;
+    background-color: rgba(219, 241, 219, 0.5);
+    box-shadow: 0.3em 0.3em 0.3em goldenrod;
+    padding: 10px;
+    border-radius: 10px;
+    right: 0;
+    top: 50%;
+    width: 8em;
+}
+
+.side a {
+    margin-right: 20px;
+    font-size: 1.2em;
+    color: rgb(187, 87, 87);
+}
+
+.side a:hover {
+    text-decoration: underline;
+}
+
+.item {
+    margin: 20px;
+}

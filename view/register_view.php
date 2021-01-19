@@ -1,5 +1,5 @@
 <main>
-<h1>Sing in</h1>
+<h2>Sign in</h2>
 <form action="register" method="post">
     
     <div>

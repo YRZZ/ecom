@@ -1,4 +1,6 @@
-
-<p>Copyright</p>
+    <footer>
+        <p>Copyright</p>
+    </footer>
 </body>
+
 </html>

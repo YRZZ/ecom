@@ -10,11 +10,11 @@ if($_SESSION['connected']===true){
     // $itemId = getContentOrder($pdo, $_SESSION['id']);
 
     if(orderByIdClient($pdo, $_SESSION['id']) === false){
-        $cartEmpty='<h1>Votre panier est vide</h1>';
+        $cartEmpty='<h2>Votre panier est vide</h2>';
     }elseif(empty($cart)!==false){
-        $cartEmpty='<h1>Votre panier est vide</h1>';
+        $cartEmpty='<h2>Votre panier est vide</h2>';
     }else{
-        $cartEmpty='<h1>Votre panier contient</h1>';
+        $cartEmpty='<h2>Votre panier contient</h2>';
         $cart = (getContentOrder($pdo, $_SESSION['id']));
     }
 }
