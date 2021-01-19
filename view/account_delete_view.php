@@ -1,6 +1,6 @@
 <p>Do you want to delete your account ? </p>
 
-<form action="/account_delete" methode="post">
+<form action="/account_delete" method="post">
     <div>
         <label for="email">email</label>
         <br>

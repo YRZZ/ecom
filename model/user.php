@@ -107,7 +107,7 @@ function deleteClient($pdo, $fromage)
     try {
         return $stmt->execute(
             [
-                "email" => $email
+                "email" => $email,
             ]
         );
     } catch (Exception $e) {
