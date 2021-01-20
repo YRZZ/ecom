@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="ecom/public/css/item.css" />
+<link rel="stylesheet" type="text/css" href="/public/css/item.css" />
 
 <main>
 

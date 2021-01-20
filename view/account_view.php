@@ -21,7 +21,7 @@
 </form>
 </p>
 
-<p>Passed Order</p>
+<p>Past Order</p>
 <?php foreach($dataOrder as $value) :?>
     <table style="width:70%">
         <h3>Order n˚<?= $value['id']?></h3>
