@@ -25,11 +25,7 @@
         <br>
         <input type="password" name="password" required>
     </div>
-    <!-- <div>
-        <label for="password">New password</label>
-        <br>
-        <input type="password" name="password">
-    </div> -->
+    
     <p>Enter your password before submit</p>
     <input type="submit" value="Submit">
 

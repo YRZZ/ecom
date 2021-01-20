@@ -14,10 +14,10 @@ if (isset($_POST['password'])) {
         // echo 'Your account has been deleted';
     }
 }
-// var_dump($_POST);
+
 var_dump($_SESSION);
 var_dump(deleteClient($pdo, $_SESSION));
 
-// deleteClient($pdo, $_SESSION);
+
 
 include '../view/account_delete_view.php';

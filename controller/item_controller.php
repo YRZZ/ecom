@@ -3,12 +3,6 @@ include '../model/item.php';
 
 $dataItem=getAllItem($pdo); 
 
-if (isset($_SESSION['id'])){
-    $dataOrder = getOpenOrderByIdClient($pdo, $_SESSION['id']);
-    if ($dataOrder!==false){
-        $cartSum=countItem($pdo,    $dataOrder['id']);
-    }
-}
 
 if (isset($_GET['id'])){
     $dataItem = getItemByCategory ($pdo, $_GET['id']);
@@ -18,8 +12,7 @@ if(empty($_POST)===false){
     if (isset($_SESSION['id'])){
         
         $dataOrder = getOpenOrderByIdClient($pdo, $_SESSION['id']);
-        var_dump($dataOrder);
-        if ((getOpenOrderByIdClient($pdo, $_SESSION['id'])) !== false && $dataOrder['paid']==='0') { //&& paid status =0
+        if ((getOpenOrderByIdClient($pdo, $_SESSION['id'])) !== false && $dataOrder['paid']==='0') { 
         $post = $_POST;
         
         $scanOrder=scanOrderContent($pdo, $dataOrder, $post);
@@ -48,7 +41,6 @@ if(empty($_POST)===false){
     header('Location: item');
     exit();
 }
-// $dataOrder = orderByIdClient($pdo, $_SESSION['id']);
-// var_dump($dataOrder);
+
 
 include '../view/item_view.php';
