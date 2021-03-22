@@ -42,5 +42,4 @@ if(empty($_POST)===false){
     exit();
 }
 
-
 include '../view/item_view.php';

@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="ecom/public/css/global.css" />
-<link rel="stylesheet" type="text/css" href="ecom/public/css/home.css" />
+<link rel="stylesheet" type="text/css" href="../public/css/global.css" />
+<link rel="stylesheet" type="text/css" href="../public/css/home.css" />
 
 
 <h2>Welcome</h2>

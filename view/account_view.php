@@ -1,8 +1,8 @@
 <?php
 
 ?>
-<link rel="stylesheet" type="text/css" href="ecom/public/css/global.css" />
-<link rel="stylesheet" type="text/css" href="ecom/public/css/informations.css" />
+<link rel="stylesheet" type="text/css" href="../public/css/global.css" />
+<link rel="stylesheet" type="text/css" href="../public/css/informations.css" />
 
 <h2>Your Account</h2>
 
